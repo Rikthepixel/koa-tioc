@@ -1,0 +1,60 @@
+{
+  "name": "koa-tioc",
+  "version": "0.1.0",
+  "author": "RikThePixel",
+  "license": "Apache-2.0",
+  "type": "module",
+  "description": "A simple inversion of control container",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "engines": {
+    "node": ">=17"
+  },
+  "dependencies": {
+    "tioc": "^0.1.0"
+  },
+  "peerDependencies": {
+    "koa": "2.x"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "koa": "^2.14.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2"
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs",
+      "types": "./lib//index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ioc",
+    "di",
+    "typescript",
+    "koa"
+  ],
+  "bugs": {
+    "url": "https://github.com/Rikthepixel/tioc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rikthepixel/tioc.git"
+  },
+  "homepage": "https://github.com/Rikthepixel/tioc#readme"
+}
