@@ -4,7 +4,7 @@
   "author": "RikThePixel",
   "license": "Apache-2.0",
   "type": "module",
-  "description": "A simple inversion of control container",
+  "description": "Simple Koa Inversion of Control middleware",
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -15,10 +15,11 @@
     "node": ">=17"
   },
   "dependencies": {
-    "tioc": "^0.1.0"
+    "tioc": "^0.x"
   },
   "peerDependencies": {
-    "koa": "2.x"
+    "koa": "2.x",
+    "tioc": "0.x"
   },
   "devDependencies": {
     "@types/koa": "^2.13.12",

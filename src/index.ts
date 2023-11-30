@@ -1,9 +1,14 @@
 import Koa from "koa";
-import {} from "tioc";
+import IoCContainer from "tioc";
 
-function injection(): Koa.Middleware {
-  
-  return function () {
+export type InjectorSeeder<TResultIoCContainer extends IoCContainer> = (
+  container: IoCContainer,
+) => TResultIoCContainer;
 
-  }
+export default function injector<TIoCContainer extends IoCContainer>(
+  seeder: InjectorSeeder<TIoCContainer>,
+) {
+  return function (ctx: Koa.Context & { container: TIoCContainer }) {
+    ctx.container = seeder(new IoCContainer());
+  };
 }
