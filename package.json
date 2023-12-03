@@ -1,12 +1,11 @@
 {
   "name": "koa-tioc",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "author": "RikThePixel",
   "license": "Apache-2.0",
-  "type": "module",
   "description": "Simple Koa Inversion of Control middleware",
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.js",
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "tsup"
@@ -35,8 +34,8 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.cjs",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js",
       "types": "./lib//index.d.ts"
     }
   },

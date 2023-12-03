@@ -1,9 +1,11 @@
 import Koa from "koa";
 import IoCContainer from "tioc";
 
+export { IoCContainer };
+
 export type InjectorSeeder<TResultIoCContainer extends IoCContainer> = (
   container: IoCContainer,
-) => TResultIoCContainer;
+) => TResultIoCContainer | Promise<TResultIoCContainer>;
 
 export interface InjectorContext<TIoCContainer extends IoCContainer> {
   container: TIoCContainer;
@@ -16,7 +18,12 @@ export interface InjectorContext<TIoCContainer extends IoCContainer> {
  * Alternatively extends the default context of Koa with the InjectorContext.
  */
 export function shimInjector<TIoCContainer extends IoCContainer>() {
-  return function (_ctx: Koa.Context & InjectorContext<TIoCContainer>) {};
+  return async function (
+    _ctx: Koa.Context & InjectorContext<TIoCContainer>,
+    next: Koa.Next,
+  ) {
+    return await next();
+  };
 }
 
 /**
@@ -27,7 +34,11 @@ export function shimInjector<TIoCContainer extends IoCContainer>() {
 export default function injector<TIoCContainer extends IoCContainer>(
   seeder: InjectorSeeder<TIoCContainer>,
 ) {
-  return function (ctx: Koa.Context & InjectorContext<TIoCContainer>) {
-    ctx.container = seeder(new IoCContainer());
+  return async function (
+    ctx: Koa.Context & InjectorContext<TIoCContainer>,
+    next: Koa.Next,
+  ) {
+    ctx.container = await seeder(new IoCContainer());
+    return await next();
   };
 }
